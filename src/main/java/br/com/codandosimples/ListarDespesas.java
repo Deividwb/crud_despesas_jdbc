@@ -8,29 +8,30 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class Application {
+public class ListarDespesas {
 
     public static void main(String[] args) {
 
-       // DespesaDAO dao = new DespesaDAO();
-       // List<Despesa> despesas = dao.findAll();
+        DespesaDAO dao = new DespesaDAO();
+        List<Despesa> despesas = dao.findAll();
        /* for(Despesa despesa:despesas){
             System.out.println("ID: "+despesa.getId());
             System.out.println("Descricao: "+despesa.getDescricao());
             System.out.println("Valor: "+despesa.getValor());
 
             System.out.println("=====================================");
-        }
-        System.out.println("***********************************");
+        }*/
+
+        /*System.out.println("***********************************");
         Optional<Despesa> despesaOptional = dao.findById(20L);
         despesaOptional.ifPresent(despesa -> {
               System.out.println("ID: "+despesa.getId());
               System.out.println("Descricao: "+despesa.getDescricao());
               System.out.println("Valor: "+despesa.getValor());
         });
-        System.out.println("***********************************");
+        System.out.println("***********************************");*/
 
-        List<Despesa> despesao = dao.findByCategoria(Categoria.ALIMENTACAO);
+       List<Despesa> despesao = dao.findByCategoria(Categoria.ALIMENTACAO);
         for(Despesa despesa:despesao){
             System.out.println("ID: "+despesa.getId());
             System.out.println("Descricao: "+despesa.getDescricao());
@@ -38,8 +39,8 @@ public class Application {
             System.out.println("Valor: "+despesa.getValor());
 
             System.out.println("=====================================");
-        }*/
-        DespesaDAO dao = new DespesaDAO();
+        }
+        /*DespesaDAO dao = new DespesaDAO();
         Despesa despesa = new Despesa();
 
         despesa.setDescricao("buenoDias");
@@ -48,7 +49,7 @@ public class Application {
         despesa.setData(LocalDate.now());
 
         Despesa despesaInserida = dao.save(despesa);
-        System.out.println("Foi inserido o id: " +despesaInserida.getId());
+        System.out.println("Foi inserido o id: " +despesaInserida.getId());*/
       
 
     }
