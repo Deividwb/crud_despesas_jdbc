@@ -1,9 +1,11 @@
 package br.com.codandosimples;
 
 import br.com.codandosimples.dao.DespesaDAO;
+import br.com.codandosimples.infra.ConnectionFactory;
 import br.com.codandosimples.model.Categoria;
 import br.com.codandosimples.model.Despesa;
 
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -13,15 +15,16 @@ public class TecladoApplication {
 
     public static void main(String[] args) {
 
-        DespesaDAO dao = new DespesaDAO();
+        Connection connection = ConnectionFactory.getConnection();
+        DespesaDAO dao = new DespesaDAO(connection);
         Despesa despesa = new Despesa();
         Scanner scanner = new Scanner(System.in);
-        Categoria[] categoria = Categoria.values() ;
+        Categoria[] categorias = Categoria.values() ;
 
 
 
         System.out.println("Digite a Descricão do gasto");
-       // despesa.setDescricao("conta gasolina");
+        despesa.setDescricao("conta gasolina");
         despesa.setDescricao(scanner.nextLine());
         System.out.println("Digite 1ALIMENTAÇÃO; 2SAUDE; 3TRANSPORTE; 4MORADIA; 5OUTROS");
 

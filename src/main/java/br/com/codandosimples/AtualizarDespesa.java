@@ -1,13 +1,18 @@
-package br.com.codandosimples.model;
+package br.com.codandosimples;
 
 import br.com.codandosimples.dao.DespesaDAO;
+import br.com.codandosimples.infra.ConnectionFactory;
+import br.com.codandosimples.model.Categoria;
+import br.com.codandosimples.model.Despesa;
 
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.Optional;
 
 public class AtualizarDespesa {
     public static void main(String[] args) {
-        DespesaDAO dao = new DespesaDAO();
+        Connection connection = ConnectionFactory.getConnection();
+        DespesaDAO dao = new DespesaDAO(connection);
         Optional<Despesa>despesaOptional = dao.findById(5l);
 
         Despesa despesa = despesaOptional.get();

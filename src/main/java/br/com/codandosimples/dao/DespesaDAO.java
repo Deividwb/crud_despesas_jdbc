@@ -3,7 +3,6 @@ package br.com.codandosimples.dao;
 import br.com.codandosimples.infra.ConnectionFactory;
 import br.com.codandosimples.model.Categoria;
 import br.com.codandosimples.model.Despesa;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,6 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 public class DespesaDAO implements IDespesaDAO{
+
+    private final Connection connection;
+
+    public DespesaDAO(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public Despesa save(Despesa despesa) {
@@ -98,8 +103,6 @@ public class DespesaDAO implements IDespesaDAO{
 
                 Despesa despesa = new Despesa(id, descricao, data, valor, categoria);
                 despesas.add(despesa);
-
-
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -126,9 +129,6 @@ public class DespesaDAO implements IDespesaDAO{
                 Categoria categoria = Categoria.valueOf(rs.getString("categoria"));
 
                 despesa = new Despesa(pKey, descricao, data, valor, categoria);
-
-
-
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -144,7 +144,7 @@ public class DespesaDAO implements IDespesaDAO{
 
         try (Connection connection = ConnectionFactory.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,categoria.toString());
+            preparedStatement.setString(1, categoria.toString());
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -157,8 +157,6 @@ public class DespesaDAO implements IDespesaDAO{
 
                 Despesa despesa = new Despesa(id, descricao, data, valor, cat);
                 despesas.add(despesa);
-
-
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);

@@ -12,13 +12,15 @@ public class Despesa {
 
     public Despesa() {
     }
-
     public Despesa(Long id, String descricao, LocalDate data, double valor, Categoria categoria) {
         this.id = id;
         this.descricao = descricao;
         this.data = data;
         this.valor = valor;
         this.categoria = categoria;
+    }
+    public Despesa(String descricao, LocalDate data, double valor, Categoria categoria) {
+        this(null,descricao,data,valor, categoria);
     }
 
     public Long getId() {
